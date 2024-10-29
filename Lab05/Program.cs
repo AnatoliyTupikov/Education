@@ -42,47 +42,47 @@ namespace Lab05
         {
             int summ = 0;
             foreach (int el in arr) summ += el;
-            Console.WriteLine($"\nSummary of all values of the array: {summ}");
             return summ;
         }
         public static double ArrElemMid(int[] arr)
         {
             
-            double mid = ArrElemSumm(arr) / arr.Length;
-            Console.WriteLine($"\nMiddle value of the array: {mid}");
+            double mid =  (double)ArrElemSumm(arr) / arr.Length;
             return mid;
             
         }
 
-        public static void ArrPNElemSumm(int[] arr, out int posSumm, out int negSumm) 
+        public static (int posSumm, int negSumm) ArrPNElemSumm(int[] arr)//, out int posSumm, out int negSumm) 
         {
-            posSumm = 0; negSumm = 0 ;
+            int pSumm = 0; int nSumm = 0 ;
             foreach (int el in arr)
             {
-                if (el > 0) posSumm += el;
-                else negSumm += el;
+                if (el > 0) pSumm += el;
+                else nSumm += el;
             }
-            Console.WriteLine($"\nSumm of positive numbers of the array: {posSumm}");
-            Console.WriteLine($"Summ of negative numbers of the array: {negSumm}");
+            return (pSumm, nSumm);
+            //Console.WriteLine($"\nSumm of positive numbers of the array: {posSumm}");
+            //Console.WriteLine($"Summ of negative numbers of the array: {negSumm}");
 
         }
 
-        public static void ArrEOElemSumm(int[] arr, out int evenSumm, out int oddSumm)
+        public static (int evenSumm, int oddSumm) ArrEOElemSumm(int[] arr)
         {
-            evenSumm = 0; oddSumm = 0;
+            int evenSumm = 0; 
+            int oddSumm = 0;
             for (int i = 0; i < arr.Length; i++) 
             {
                 if ((i+1)%2 == 0) evenSumm += arr[i];
                 else oddSumm += arr[i];
             }
-            Console.WriteLine($"\nSumm of values with even index of the array: {evenSumm}");
-            Console.WriteLine($"Summ of values with odd index of the array: {oddSumm}");
+            return (evenSumm, oddSumm);
+            
 
         }
-        public static void ArrHigestValue(int[] arr, out int minValueIndex, out int maxValueIndex) 
+        public static (int minIndex, int maxIndex) ArrHigestValue(int[] arr) 
         {
             int maxTemp = arr[0], minTemp = arr[0];
-            minValueIndex = maxValueIndex = 0;
+            int minValueIndex = 0; int maxValueIndex = 0;
             
             for (int i = 1; i < arr.Length; i++)
             {
@@ -95,21 +95,21 @@ namespace Lab05
                     minValueIndex = i; minTemp = arr[i];
                 }
             }
-            Console.WriteLine($"\nMin value: array[{minValueIndex}] = {minTemp}");
-            Console.WriteLine($"Max value: array[{maxValueIndex}] = {maxTemp}");
+            return (minValueIndex ,maxValueIndex);
+            
 
         }
 
         public static int ArrMinMaxMulti(int[] arr) 
         {
-            int minIndex, maxIndex;
-            ArrHigestValue(arr, out minIndex, out maxIndex);
-            int multi = arr[minIndex];
-            for (int i = minIndex + 1; i <= maxIndex; i++) 
+            
+            var minmax = ArrHigestValue(arr);
+            int multi = arr[minmax.minIndex];
+            for (int i = minmax.minIndex + 1; i <= minmax.minIndex; i++) 
             {
                 multi *= arr[i];
             }
-            Console.WriteLine($"\nMultiplication of values between min and max values: {multi}");
+            
             return multi;
             
         }
@@ -119,14 +119,28 @@ namespace Lab05
         static void Main(string[] args)
         {
             int[] arr = InputedArray();
-            ArrElemMid(arr);
-            int posSumm, negSumm;
-            ArrPNElemSumm(arr, out posSumm, out negSumm);
-            int evenSumm, oddSumm;
-            ArrEOElemSumm(arr, out evenSumm, out oddSumm);
+            
+            Console.WriteLine($"\nSummary of all values of the array: {ArrElemSumm(arr)}");
+          
+            Console.WriteLine($"\nMiddle value of the array: {ArrElemMid(arr)}");
 
-            ArrMinMaxMulti(arr);
 
+            var posneg = ArrPNElemSumm(arr);
+            Console.WriteLine($"\nSumm of positive numbers of the array: {posneg.posSumm}");
+            Console.WriteLine($"Summ of negative numbers of the array: {posneg.negSumm}");
+            
+
+            var evenodd = ArrEOElemSumm(arr);
+            Console.WriteLine($"\nSumm of values with even position of the array: {evenodd.evenSumm}");
+            Console.WriteLine($"Summ of values with odd position of the array: {evenodd.oddSumm}");
+
+
+            var minmax = ArrHigestValue(arr);
+            Console.WriteLine($"\nIndex of Min value: {minmax.minIndex}");
+            Console.WriteLine($"Index of Max value:{minmax.maxIndex}");
+
+            
+            Console.WriteLine($"\nMultiplication of values between min and max values: {ArrMinMaxMulti(arr)}");
 
 
 
