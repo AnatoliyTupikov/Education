@@ -2,7 +2,7 @@
 {
     internal class Program
     {
-        public static int SqrEquation (double a, double b, double c, out double? root1, out double? root2) 
+        public static int SqrEquation (double a, double b, double c, out double root1, out double root2) 
         {
             double d = Math.Pow(b, 2) - 4 * a * c;
             if (d > 0) 
@@ -16,7 +16,7 @@
                 root1 = root2 = -b / (2 * a);
                 return 0;
             }
-            root1 = null; root2 = null;
+            root1 = double.NaN; root2 = double.NaN;
             return -1;
         }
         static void Main(string[] args)
@@ -35,7 +35,7 @@
                 Console.WriteLine($"Input {sequence} coefficient of the quadratic equation:");
                 coefs[i] = Int32.Parse(Console.ReadLine());
             }
-            int result = SqrEquation(coefs[0], coefs[1], coefs[2],out double? root1, out double? root2);
+            int result = SqrEquation(coefs[0], coefs[1], coefs[2],out double root1, out double root2);
             switch(result)
             {
                 case -1: Console.WriteLine($"The roots of the equation with coefficients: a = {coefs[0]}, b = {coefs[1]}, c = {coefs[2]}, don't exist"); ; break;
