@@ -103,9 +103,12 @@ namespace Lab05
         public static int ArrMinMaxMulti(int[] arr) 
         {
             
-            var minmax = ArrHigestValue(arr);
-            int multi = arr[minmax.minIndex];
-            for (int i = minmax.minIndex + 1; i <= minmax.minIndex; i++) 
+            var tempind = ArrHigestValue(arr);
+           
+            if (tempind.minIndex > tempind.maxIndex) tempind = (tempind.maxIndex, tempind.minIndex); 
+
+            int multi = arr[tempind.minIndex];
+            for (int i = tempind.minIndex + 1; i <= tempind.maxIndex; i++) 
             {
                 multi *= arr[i];
             }
