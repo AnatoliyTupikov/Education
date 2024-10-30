@@ -128,19 +128,19 @@ namespace Lab05
             Console.WriteLine($"\nMiddle value of the array: {ArrElemMid(arr)}");
 
 
-            var posneg = ArrPNElemSumm(arr);
-            Console.WriteLine($"\nSumm of positive numbers of the array: {posneg.posSumm}");
-            Console.WriteLine($"Summ of negative numbers of the array: {posneg.negSumm}");
+            var (posSumm, negSumm) = ArrPNElemSumm(arr);
+            Console.WriteLine($"\nSumm of positive numbers of the array: {posSumm}");
+            Console.WriteLine($"Summ of negative numbers of the array: {negSumm}");
             
 
-            var evenodd = ArrEOElemSumm(arr);
-            Console.WriteLine($"\nSumm of values with even position of the array: {evenodd.evenSumm}");
-            Console.WriteLine($"Summ of values with odd position of the array: {evenodd.oddSumm}");
+            var (evenSumm, oddSumm) = ArrEOElemSumm(arr);
+            Console.WriteLine($"\nSumm of values with even position of the array: {evenSumm}");
+            Console.WriteLine($"Summ of values with odd position of the array: {oddSumm}");
 
 
-            var minmax = ArrHigestValue(arr);
-            Console.WriteLine($"\nIndex of Min value: {minmax.minIndex}");
-            Console.WriteLine($"Index of Max value:{minmax.maxIndex}");
+            var (minIndex, maxIndex) = ArrHigestValue(arr);
+            Console.WriteLine($"\nIndex of Min value: {minIndex}");
+            Console.WriteLine($"Index of Max value:{maxIndex}");
 
             
             Console.WriteLine($"\nMultiplication of values between min and max values: {ArrMinMaxMulti(arr)}");
