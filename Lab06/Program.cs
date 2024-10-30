@@ -13,6 +13,11 @@
             this.Side3 = side3;
         }
 
+        public Triangle(int side)
+        {
+            this.Side1 = this.Side2 = this.Side3 = side;
+        }
+
         public bool IsTriangleExs()
         {
             if (this.Side1 + this.Side2 > this.Side3 && this.Side1 + this.Side3 > this.Side2 && this.Side2 + this.Side3 > this.Side1) return true;
